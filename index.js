@@ -25,14 +25,7 @@ Hello, welcome to my API — Waguri API by Jay Mar
 
 Sample Endpoints:
 GET   /waguri/models
-POST  /waguri/chat
-
-Sample Chat Payload (POST /waguri/chat):
-{
-  "model": "gpt-4o",
-  "prompt": "What is the capital of Japan?",
-  "role": "user"
-}
+GET   /waguri/chat?model=gpt-4o&prompt=What+is+the+capital+of+Japan&role=user
 
 Made with ❤️ by Jay Mar
   `.trim());
@@ -50,8 +43,8 @@ app.get("/waguri/models", async (req, res) => {
   }
 });
 
-app.post("/waguri/chat", async (req, res) => {
-  const { model, prompt, role } = req.body;
+app.get("/waguri/chat", async (req, res) => {
+  const { model, prompt, role } = req.query;
 
   if (!model || !prompt) {
     return res.status(400).json({
